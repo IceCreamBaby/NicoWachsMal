@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Henrik's Birthday</title>
+	<style>
+		body {
+			background-color: black;
+			color: white;
+			font-size: 20px;
+			text-align: center;
+		}
+		
+		/* Hintergrundfarbe */
+		html {
+			background-color: rgb(255, 0, 0);
+			background-image: linear-gradient(to bottom right, red, orange, yellow, green, blue, purple);
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Herzlichen Glückwunsch zum Geburtstag, Nico!</h1>
+	<script>
+		var colors = ["red", "orange", "yellow", "green", "blue", "purple"];
+		var messages = ["Alles Gute zum Geburtstag!", "Herzlichen Glückwunsch!", "Viel Glück im neuen Lebensjahr!", "Gesundheit und Wohlbefinden!", "Erfolg und Zufriedenheit!", "Guter Fußball Spieler!", "Nico der Krasse"];
+		
+		function addMessage() {
+			var message = messages[Math.floor(Math.random() * messages.length)];
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			
+			var span = document.createElement("span");
+			span.style.color = color;
+			span.style.fontSize = Math.floor(Math.random() * 40 + 20) + "px";
+			span.style.position = "absolute";
+			span.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+			span.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+			span.innerHTML = message;
+			
+			document.body.appendChild(span);
+			
+			var duration = Math.floor(Math.random() * 5000 + 1000);
+			
+			setTimeout(function(span) {
+				return function() {
+					document.body.removeChild(span);
+				};
+			}(span), duration);
+			
+			setTimeout(addMessage, 5000);
+		}
+		
+		addMessage();
+	</script>
+</body>
+</html>
